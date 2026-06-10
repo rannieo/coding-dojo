@@ -24,6 +24,26 @@ It's built on the principles in Drew Breunig's [*10 Lessons for Agentic Coding*]
 6. **Intent log** — one line per decision: what and why.
 7. **The 2am question** — end each session with "what breaks at 2am, and how would you know?"
 
+## Example session
+
+> **You:** Add a debounce to the search input so we don't fire a request on every keystroke.
+>
+> **Agent (dojo mode):** That's decision-bearing — timing, trailing vs. leading edge, cleanup — so it's yours, not mine. Sketch it first: what fires when, and what happens to an in-flight timer when a new keystroke arrives?
+>
+> **You:** Wrap the handler. On each call, clear the pending timer and start a new 300ms one. Only the last call in a quiet window runs. On unmount, clear the timer.
+>
+> **Agent:** Solid sketch. One hard question before you write it: what does the returned function close over — and what breaks if the component re-renders and builds a *new* debounced function each time?
+>
+> **You:** *…writes the implementation…*
+>
+> **Agent:** Review: line 4 references `timer`, but it's a local `let`, so it resets to `undefined` on every render — your cleanup never sees the live timer. I won't paste the fix. Explain back: why does a ref solve this where `let` doesn't?
+>
+> **You:** Because a ref persists across renders; the `let` is recreated each render, so each closure holds its own dead copy.
+>
+> **Agent:** Exactly. Want me to scaffold the test file? *(that's boilerplate — my side of the split.)*
+
+Need it shipped instead of practiced? Say **`ship-mode`** and the agent just writes it.
+
 ## The escape hatch
 
 Say **`ship-mode`** on any task and the dojo fully steps aside — the agent just builds it. Use it for incidents, hotfixes, deadlines, or anything customer-impacting. Practice later.
