@@ -1,5 +1,7 @@
 # coding-dojo
 
+[![skills.sh](https://skills.sh/b/rannieo/coding-dojo)](https://skills.sh/rannieo/coding-dojo)
+
 An agent skill that turns your AI pair into a **coach instead of an autocomplete**. Works with any coding agent that supports the [Agent Skills](https://skills.sh) format.
 
 When you're feeling rusty, over-reliant on AI, or just want to *keep* your hands-on coding skill, `coding-dojo` flips the agent's default. Instead of writing the code for you, it enforces a **keyboard split**: you write the decision-bearing code — the core function, the tricky condition, the schema, the algorithm — and the agent is allowed to type only boilerplate (imports, scaffolding, fixtures, config, plumbing).
